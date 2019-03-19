@@ -53,10 +53,11 @@ smsReceiver.startSmsListener() // It stops receiving after one message received
 ```
 # Construct a verification message
 The verification message that you will send to the user's device. This message must:
-	- Be no longer than 140 bytes
-	- Begin with the prefix <#>
-	- Contain a one-time code that the client sends back to your server to complete the verification flow (see Generating a one-time code)
-	- End with an 11-character hash string that identifies your app (see Computing your app's hash string)
+
+ - Be no longer than 140 bytes
+ - Begin with the prefix <#>
+ - Contain a one-time code that the client sends back to your server to complete the verification flow (see Generating a one-time code)
+ - End with an 11-character hash string that identifies your app (see Computing your app's hash string)
 Otherwise, the contents of the verification message can be whatever you choose. It is helpful to create a message from which you can easily extract the one-time code later on. For example, a valid verification message might look like the following:
 ```
 <#> Your ExampleApp code is: 123ABC78
