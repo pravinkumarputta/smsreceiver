@@ -46,7 +46,7 @@ SMSBroadcastReceiver.OTPReceiveListener smsReceiverCallback = new SMSBroadcastRe
 };
 
 SMSReceiver smsReceiver = SMSReceiver(activity, smsReceiverCallback)
-
+```
 ### Step 3. Call startSmsListener() method to start receiving
 ```
 smsReceiver.startSmsListener() // It stops receiving after one message received
