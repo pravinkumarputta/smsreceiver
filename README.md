@@ -65,7 +65,7 @@ Otherwise, the contents of the verification message can be whatever you choose. 
 FA+9qCX9VSu
 ```
 
-(For more information visit [__here__](https://github.com/code-mc/material-icon-lib/blob/master/materialiconlib/src/main/assets/materialdesignicons-webfont.ttf?raw=true))
+(For more information visit [__here__](https://developers.google.com/identity/sms-retriever/verify))
 # Generating 11-character hash string for your app
 After instantiating SMSReceiver access hash string using:
 ```
