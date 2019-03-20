@@ -21,7 +21,15 @@ dependencies {
 	implementation 'com.github.pravinkumarputta:smsreceiver:0.1.0'
 }
 ```
-### Step 3. Instantiate SMSReceiver
+### Step 3. Register receiver to your manifest file
+```
+<receiver android:name="com.pravinkumarputta.android.smsreceiver.SMSBroadcastReceiver" android:exported="true">
+	<intent-filter>
+		<action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED"/>
+	</intent-filter>
+</receiver>
+```
+### Step 4. Instantiate SMSReceiver
 ```
 SMSBroadcastReceiver.OTPReceiveListener smsReceiverCallback = new SMSBroadcastReceiver.OTPReceiveListener() {
 	@Override
@@ -47,7 +55,7 @@ SMSBroadcastReceiver.OTPReceiveListener smsReceiverCallback = new SMSBroadcastRe
 
 SMSReceiver smsReceiver = SMSReceiver(activity, smsReceiverCallback)
 ```
-### Step 3. Call startSmsListener() method to start receiving
+### Step 5. Call startSmsListener() method to start receiving
 ```
 smsReceiver.startSmsListener() // It stops receiving after one message received
 ```
