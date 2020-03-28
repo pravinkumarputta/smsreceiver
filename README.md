@@ -18,7 +18,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```
 dependencies {
-	implementation 'com.github.pravinkumarputta:smsreceiver:0.1.0'
+	implementation 'com.github.pravinkumarputta:smsreceiver:latest_version'
 }
 ```
 ### Step 3. Register receiver to your manifest file
