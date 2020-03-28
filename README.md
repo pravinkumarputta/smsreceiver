@@ -53,7 +53,7 @@ SMSBroadcastReceiver.OTPReceiveListener smsReceiverCallback = new SMSBroadcastRe
 	}
 };
 
-SMSReceiver smsReceiver = SMSReceiver(activity, smsReceiverCallback)
+SMSReceiver smsReceiver = SMSReceiver(context, smsReceiverCallback)
 ```
 ### Step 5. Call startSmsListener() method to start receiving
 ```
