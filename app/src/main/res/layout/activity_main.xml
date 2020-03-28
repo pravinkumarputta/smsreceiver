@@ -74,5 +74,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Start sms receiver to get sms."/>
+
+        <Button
+                android:id="@+id/btRequestPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Request Phone Number" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Selected phone number:"
+                android:textIsSelectable="true"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/tvPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No phone number selected." />
     </LinearLayout>
 </ScrollView>

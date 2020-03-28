@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AppSignatureHelper  extends ContextWrapper {
+public class AppSignatureHelper extends ContextWrapper {
     public static final String TAG = AppSignatureHelper.class.getSimpleName();
 
     private static final String HASH_TYPE = "SHA-256";
@@ -68,7 +68,7 @@ public class AppSignatureHelper  extends ContextWrapper {
             Log.v(TAG + "sms_sample_test", String.format("pkg: %s -- hash: %s", packageName, base64Hash));
             return base64Hash;
         } catch (NoSuchAlgorithmException e) {
-            Log.v(TAG+ "sms_sample_test", "hash:NoSuchAlgorithm", e);
+            Log.v(TAG + "sms_sample_test", "hash:NoSuchAlgorithm", e);
         }
         return null;
     }

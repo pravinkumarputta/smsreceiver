@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
@@ -12,7 +13,7 @@ import com.google.android.gms.common.api.Status;
 public class SMSBroadcastReceiver extends BroadcastReceiver {
     private static OTPReceiveListener otpReceiver;
 
-    public static void initOTPListener(OTPReceiveListener receiver){
+    public static void initOTPListener(OTPReceiveListener receiver) {
         otpReceiver = receiver;
     }
 
@@ -20,14 +21,14 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
             Bundle extras = intent.getExtras();
-            if (extras==null){
+            if (extras == null) {
                 return;
             }
             Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
-            if (status==null){
+            if (status == null) {
                 return;
             }
-            switch (status.getStatusCode()){
+            switch (status.getStatusCode()) {
                 case CommonStatusCodes.SUCCESS:
                     // Get SMS message contents
                     String otp = (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE);
@@ -37,22 +38,27 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                     // But here we are just passing it to MainActivity
                     if (otpReceiver != null) {
 //                        otp = otp.replace("<#> Your ExampleApp code is: ", "").split("\n").dropLastWhile { it.isEmpty() }.toTypedArray()[0]
-                        otpReceiver.onSMSReceived(otp.replaceFirst("<#>","").replace(SMSReceiver.hashKey,"").trim());
+                        otpReceiver.onSMSReceived(otp.replaceFirst("<#>", "").replace(SMSReceiver.getHashKey(context), "").trim());
                     }
-                break;
+                    break;
                 case CommonStatusCodes.TIMEOUT:
                     // Waiting for SMS timed out (5 minutes)
                     // Handle the error ...
-                    otpReceiver.onSMSReceiverTimeOut();
-                break;
+                    if (otpReceiver != null) {
+                        otpReceiver.onSMSReceiverTimeOut();
+                    }
+                    break;
             }
         }
     }
 
     public interface OTPReceiveListener {
         void onSMSReceiverStarted();
+
         void onSMSReceiverFailed(Exception exception);
+
         void onSMSReceived(String message);
+
         void onSMSReceiverTimeOut();
     }
 }

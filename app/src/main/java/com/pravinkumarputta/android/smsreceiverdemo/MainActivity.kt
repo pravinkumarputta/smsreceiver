@@ -1,5 +1,6 @@
 package com.pravinkumarputta.android.smsreceiverdemo
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.pravinkumarputta.android.smsreceiver.SMSBroadcastReceiver
@@ -12,12 +13,17 @@ class MainActivity : AppCompatActivity(), SMSBroadcastReceiver.OTPReceiveListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         smsReceiver = SMSReceiver(this, this)
-        tvOtpHashCode.text = SMSReceiver.hashKey
-        tvOtpSampleMessage.text = "<#> One time password is 12345678\n${SMSReceiver.hashKey}"
+        tvOtpHashCode.text = SMSReceiver.getHashKey(this)
+        tvOtpSampleMessage.text =
+            "<#> One time password is 12345678\n${SMSReceiver.getHashKey(this)}"
 
         btSubmit.setOnClickListener {
             btSubmit.isEnabled = false
             smsReceiver!!.startSmsListener()
+        }
+
+        btRequestPhoneNumber.setOnClickListener {
+            SMSReceiver.requestForPhoneNumber(this)
         }
     }
 
@@ -39,5 +45,13 @@ class MainActivity : AppCompatActivity(), SMSBroadcastReceiver.OTPReceiveListene
     override fun onSMSReceiverTimeOut() {
         btSubmit.isEnabled = true
         tvOtpResponse.text = "Otp receiver is expired"
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val phoneNumber = SMSReceiver.getPhoneNumberFromResult(requestCode, resultCode, data)
+        if (phoneNumber != null) {
+            tvPhoneNumber.text = phoneNumber
+        }
     }
 }
