@@ -77,5 +77,16 @@ FA+9qCX9VSu
 # Generating 11-character hash string for your app
 After instantiating SMSReceiver access hash string using:
 ```
-SMSReceiver.hashKey // After instantiating SMSReceiver othersise it returns empty string
+SMSReceiver.getHashKey(context)
 ```
+# Request for phone number saved in your device
+```
+SMSReceiver.requestForPhoneNumber(activity)
+```
+Above method call activity for result, so you have to implement onActivityResult in your activity. Copy and paste below code into onActivityResult.
+```
+String phoneNumber = SMSReceiver.getPhoneNumberFromResult(requestCode, resultCode, data); // returns null if phone number not selected.
+```
+
+
+
